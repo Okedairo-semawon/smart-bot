@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  smartbot:
+    build: .
+    container_name: smartbot-app
+    ports:
+      - '5000:5000'
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/dialogflow_key
+    secrets:
+      - dialogflow_key
+    volumes:
+      - .:/app
+
+secrets:
+  dialogflow_key:
+    file: ./dialogflow/agent-key.json
