@@ -40,7 +40,7 @@ SmartBot/
 │── .env.example       # Example environment variables
 │── package.json       # Dependencies & scripts
 │── README.md          # Project documentation
-``````
+```
 
 ## ⚙️ Installation & Setup
 
@@ -49,11 +49,18 @@ SmartBot/
 git clone https://github.com/your-username/smartbot.git
 cd smartbot
 ```
+### Install dependencies
+```bash 
+npm install
+```
+## .ENV example 
+```bash
 MONGO_URI=your_mongodb_atlas_connection
 DIALOGFLOW_PROJECT_ID=your_project_id
 DIALOGFLOW_PRIVATE_KEY=your_private_key
 DIALOGFLOW_CLIENT_EMAIL=your_service_account_email
 PORT=5000
+```
 
 ## Run the app
 npm run start
