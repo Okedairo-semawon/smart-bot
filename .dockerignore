@@ -1,4 +1,10 @@
 node_modules
 npm-debug.log
-dialogflow/agent-key.json
+.git
+.github
 .env
+.env.*
+!.env.example
+dialogflow/*.json
+*.pem
+tests

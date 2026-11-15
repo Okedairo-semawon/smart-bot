@@ -1,18 +1,28 @@
-version: '3.8'
-
 services:
   smartbot:
     build: .
     container_name: smartbot-app
     ports:
-      - '5000:5000'
+      - '8000:8000'
     environment:
-      - MONGO_URI=${MONGO_URI}
+      - NODE_ENV=production
+      - PORT=8000
+      - MONGODB_URI=${MONGODB_URI}
+      - PROJECT_ID=${PROJECT_ID}
+      - API_KEYS=${API_KEYS}
+      - CORS_ORIGINS=${CORS_ORIGINS:-}
       - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/dialogflow_key
     secrets:
       - dialogflow_key
-    volumes:
-      - .:/app
+    # Hardening: read-only filesystem, no extra Linux capabilities, no privilege escalation.
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
 
 secrets:
   dialogflow_key:
